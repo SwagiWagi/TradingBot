@@ -1,7 +1,7 @@
-using TradingBot.ExchangeHandler;
 using TradingBot.Logger;
 using TradingBot.Trader;
-using TradingBot.TraderBuilder;
+using TradingBot.Trader.ExchangeHandler;
+using TradingBot.Trader.TraderBuilder;
 using ILogger = TradingBot.Logger.ILogger;
 
 //Init custom services
@@ -15,15 +15,12 @@ ITrader btcUsdtTrader = traderBuilder
     .SetTicker("BTCUSDT")
     .Build();
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
 
 builder.Services.AddSingleton<ILogger>(logger);
-builder.Services.AddSingleton<ITrader>(btcUsdtTrader);
-
 
 var app = builder.Build();
 

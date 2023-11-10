@@ -1,6 +1,6 @@
 ﻿using TradingBot.Models.Enums;
 
-namespace TradingBot.ExchangeHandler;
+namespace TradingBot.Trader.ExchangeHandler;
 
 public interface IExchangeHandler
 {

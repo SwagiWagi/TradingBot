@@ -1,8 +1,7 @@
-﻿using TradingBot.ExchangeHandler;
-using TradingBot.Trader;
+﻿using TradingBot.Trader.ExchangeHandler;
 using ILogger = TradingBot.Logger.ILogger;
 
-namespace TradingBot.TraderBuilder;
+namespace TradingBot.Trader.TraderBuilder;
 
 public abstract class ITraderBuilder
 {

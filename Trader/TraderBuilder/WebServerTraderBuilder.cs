@@ -1,6 +1,4 @@
-﻿using TradingBot.Trader;
-
-namespace TradingBot.TraderBuilder;
+﻿namespace TradingBot.Trader.TraderBuilder;
 
 public class WebServerTraderBuilder : ITraderBuilder
 {

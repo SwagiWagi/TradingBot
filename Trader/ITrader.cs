@@ -1,4 +1,5 @@
-﻿using TradingBot.ExchangeHandler;
+﻿using TradingBot.Trader.ExchangeHandler;
+using TradingBot.Trader.Indicators;
 using ILogger = TradingBot.Logger.ILogger;
 
 namespace TradingBot.Trader;
@@ -11,7 +12,8 @@ public abstract class ITrader
     private readonly string _ticker;
     private readonly string _timeframe;
 
-    private readonly Dictionary<string, bool> _indicators;
+    //It's a dictionary for performance
+    private readonly Dictionary<string, Indicator> _indicators;
 
     protected ITrader(ILogger logger, IExchangeHandler exchangeHandler, string ticker, string timeframe)
     {
@@ -21,8 +23,11 @@ public abstract class ITrader
         this._ticker = ticker;
         this._timeframe = timeframe;
 
-        this._indicators = new Dictionary<string, bool>();
+        this._indicators = new Dictionary<string, Indicator>();
     }
     
-    public abstract Task Run();
+    public void AddIndicator(Indicator indicator)
+    {
+        this._indicators.Add(indicator.GetName(), indicator);
+    }
 }

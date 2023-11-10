@@ -1,16 +1,14 @@
 ﻿using TradingBot.Models.Enums;
 
-namespace TradingBot.ExchangeHandler;
+namespace TradingBot.Trader.ExchangeHandler;
 
 public class BinanceSocketHandler : IExchangeHandler
 {
-    private const string _exchangeName = "Binance";
-    
     private string _ticker;
     
     public string GetExchangeName()
     {
-        return BinanceSocketHandler._exchangeName;
+        return "Binance";
     }
 
     public Task<bool> Trade(TradeType tradeType, string ticker, decimal amount, decimal price, int? leverage)
