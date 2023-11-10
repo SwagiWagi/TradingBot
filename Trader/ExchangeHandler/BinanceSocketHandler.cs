@@ -4,8 +4,6 @@ namespace TradingBot.Trader.ExchangeHandler;
 
 public class BinanceSocketHandler : IExchangeHandler
 {
-    private string _ticker;
-    
     public string GetExchangeName()
     {
         return "Binance";

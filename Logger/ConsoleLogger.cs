@@ -1,4 +1,5 @@
-﻿using TradingBot.Models.Enums;
+﻿using TradingBot.Models;
+using TradingBot.Models.Enums;
 
 namespace TradingBot.Logger;
 
@@ -41,6 +42,12 @@ public class ConsoleLogger : ILogger
     public async Task<bool> Critical(string message)
     {
         Console.WriteLine($"[FATAL] {message}");
+        return true;
+    }
+
+    public async Task<bool> IndicatorAlert(IndicatorAlert indicatorAlert)
+    {
+        Console.WriteLine($"[INDICATOR ALERT] {indicatorAlert}");
         return true;
     }
 }

@@ -1,26 +1,19 @@
 using TradingBot.Logger;
 using TradingBot.Trader;
 using TradingBot.Trader.ExchangeHandler;
-using TradingBot.Trader.TraderBuilder;
 using ILogger = TradingBot.Logger.ILogger;
-
-//Init custom services
-ILogger logger = new ConsoleLogger();
-
-ITraderBuilder traderBuilder = new WebServerTraderBuilder();
-
-ITrader btcUsdtTrader = traderBuilder
-    .SetLogger(logger)
-    .SetExchangeHandler(new BinanceSocketHandler())
-    .SetTicker("BTCUSDT")
-    .Build();
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
 
+ILogger logger = new ConsoleLogger();
+IExchangeHandler exchangeHandler = new BinanceSocketHandler();
+
 builder.Services.AddSingleton<ILogger>(logger);
+//According to the configuration
+builder.Services.AddSingleton<IExchangeHandler>(exchangeHandler);
 
 var app = builder.Build();
 

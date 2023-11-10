@@ -1,4 +1,5 @@
-﻿using TradingBot.Models.Enums;
+﻿using TradingBot.Models;
+using TradingBot.Models.Enums;
 
 namespace TradingBot.Logger;
 
@@ -15,4 +16,6 @@ public interface ILogger
         decimal fee);
     public Task<bool> Error(string message);
     public Task<bool> Critical(string message);
+    
+    public Task<bool> IndicatorAlert(IndicatorAlert indicatorAlert);
 }
