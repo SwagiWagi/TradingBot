@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using TradingBot.ExchangeHandler;
 using TradingBot.Models;
-using TradingBot.Trader;
-using TradingBot.Trader.ExchangeHandler;
 using ILogger = TradingBot.Logger.ILogger;
 
 namespace TradingBot.Controllers;
@@ -13,7 +12,7 @@ public class IndicatorsController : ControllerBase
     private readonly ILogger _logger;
     private readonly IExchangeHandler _exchangeHandler;
     
-    private readonly Dictionary<string, Trader.Trader> _traders;
+    private readonly Dictionary<string, Trader> _traders;
 
     public IndicatorsController(ILogger logger, IExchangeHandler exchangeHandler)
     {
@@ -28,16 +27,14 @@ public class IndicatorsController : ControllerBase
 
         if (!this._traders.ContainsKey(indicatorAlert.Ticker))
         {
-            var trader = new TraderBuilder()
+            TraderBuilder traderBuilder = new TraderBuilder()
                 .SetLogger(_logger)
                 .SetExchangeHandler(this._exchangeHandler)
-                .SetTicker(indicatorAlert.Ticker)
-                .SetTimeframe(indicatorAlert.TimeFrame)
-                .Build();
+                .SetTicker(indicatorAlert.Ticker);
             
-            _traders.Add(indicatorAlert.Ticker, trader);
+            _traders.Add(indicatorAlert.Ticker, traderBuilder.Build());
         }
-        
+
         _traders[indicatorAlert.Ticker].AddIndicatorAlert(indicatorAlert);
         
         return Task.CompletedTask;

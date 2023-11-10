@@ -1,7 +1,7 @@
-﻿using TradingBot.Trader.ExchangeHandler;
+﻿using TradingBot.ExchangeHandler;
 using ILogger = TradingBot.Logger.ILogger;
 
-namespace TradingBot.Trader;
+namespace TradingBot;
 
 public class TraderBuilder
 {
@@ -9,7 +9,6 @@ public class TraderBuilder
     private IExchangeHandler _exchangeHandler;
 
     private string _ticker;
-    private string _timeframe;
 
     public TraderBuilder()
     {
@@ -33,14 +32,8 @@ public class TraderBuilder
         return this;
     }
 
-    public TraderBuilder SetTimeframe(string timeframe)
-    {
-        this._timeframe = timeframe;
-        return this;
-    }
-
     public Trader Build()
     {
-        return new Trader(this._logger, this._exchangeHandler, this._ticker, this._timeframe);
+        return new Trader(this._logger, this._exchangeHandler, this._ticker);
     }
 }

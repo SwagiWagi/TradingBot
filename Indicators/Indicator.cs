@@ -1,6 +1,6 @@
 ﻿using TradingBot.Models;
 
-namespace TradingBot.Trader.Indicators;
+namespace TradingBot.Indicators;
 
 public class Indicator
 {

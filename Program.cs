@@ -1,6 +1,5 @@
+using TradingBot.ExchangeHandler;
 using TradingBot.Logger;
-using TradingBot.Trader;
-using TradingBot.Trader.ExchangeHandler;
 using ILogger = TradingBot.Logger.ILogger;
 
 var builder = WebApplication.CreateBuilder(args);
